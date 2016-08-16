@@ -1,0 +1,47 @@
+{% extends 'index/base.html' %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% block content%}
+<hr>
+<section id="services">
+<div class="container">
+<div class="row">
+<div class="col-lg-12">
+
+<h2 class="section-heading">{{post.title}}</h2>
+<hr><br>
+<h3>{{post.content}}</h3>
+<br>
+<p><img src="{{post.media.url}}" style="width: 50%;" ></p>
+<hr>
+<p>따봉 수 : {{num_likes}}</p>
+<p>평균 극혐 지수 : <font color='#fed136' size='5'>{{avg|floatformat:1}}</font></p>
+따봉한 사람 :
+{% for like in likes %}
+{{like.liker}}
+{% endfor %}
+<hr>
+
+<div>
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form likeform %}
+    <input type="hidden" name="form_type" value="like">
+    <input type="submit" value="극혐!" name="like">
+</form>
+<hr>
+</div>
+{% for comment in comments %}
+{{comment.content}}
+{% endfor %}
+<div>
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form commentform %}
+    <input type="hidden" name="form_type" value="comment">
+    <input type="submit" value="답글 달기">
+</form>
+</div>
+</div>
+</section>
+{% endblock %}

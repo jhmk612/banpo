@@ -1,0 +1,40 @@
+{% extends 'index/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<hr>
+<section id="services" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">문과의 얼굴들</h2>
+                    <h3 class="section-subheading text-muted">스누웨이는 서울대학교 벤처경영학과에서 진행하는 프로젝트입니다. <br>웹사이트는 연합동아리 '피로그래밍'를 통해 제작되었습니다.</h3>
+                </div>
+            </div>
+
+            <div class="row">
+            {% for person in people_list %}
+                <div class="col-sm-4">
+
+                    <div class="team-member">
+                    <a href="{% url 'black:post_list' person.pk %}">
+                        <img src="\static\img\logo_snuway.png" class="img-responsive img-circle" alt="logo_snuway">
+                        <h4>{{person.name}}</a></h4>
+                        <p class="text-muted">서울대학교 벤처경영학과 프로젝트</p>
+
+<!--                         <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul> -->
+                    </div>
+
+                </div>
+                {% endfor %}
+                </div>
+                </div>
+
+{% endblock%}
